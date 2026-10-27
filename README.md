@@ -27,9 +27,9 @@ StatureAtlas 将身高、体重与成人 BMI 分类放在同一张网格中，�
 
 ## 项目预览
 
-![StatureAtlas 桌面预览](docs-dev/evidence/preview.png)
+![StatureAtlas 桌面预览](docs/screenshots/preview.png)
 
-[查看完整桌面截图](docs-dev/evidence/desktop-1280.png) · [查看移动端截图](docs-dev/evidence/mobile-390.png)
+[查看完整桌面截图](docs/screenshots/desktop-1280.png) · [查看移动端截图](docs/screenshots/mobile-390.png)
 
 > 截图中的人物记录为演示数据。首次打开应用时，记录列表为空。
 
@@ -152,12 +152,12 @@ src/
 ├── App.tsx           # 页面布局与状态编排
 └── index.css         # 全局样式与响应式布局
 tests/                # 测试用例与测试环境配置
-docs-dev/             # 开发手册、验收记录与截图
+docs/                 # 公开技术说明与项目截图
 public/               # 静态资源
 vercel.json           # Vercel 静态部署配置
 ```
 
-记录统一以公斤存储，BMI、分类和点位由原始数据实时计算。为兼容开发手册约定，存储键保留为 `height-weight-compare:records:v1`，使用带版本号的数据结构：
+记录统一以公斤存储，BMI、分类和点位由原始数据实时计算。记录存储键为 `height-weight-compare:records:v1`，使用带版本号的数据结构：
 
 ```json
 {
@@ -212,8 +212,5 @@ pnpm build
 
 ## 项目文档
 
-- [开发手册](docs-dev/README.md)
-- [数据模型与 BMI 算法](docs-dev/docs/04-数据模型与BMI算法.md)
-- [验收记录](docs-dev/ACCEPTANCE.md)
-
-开发手册保留了最初的需求说明；布局、坐标范围和交互调整以手册首页的「最新产品调整」及当前实现为准。
+- [BMI、坐标与本地数据说明](docs/bmi-and-data.md)
+- [品牌图标与导出说明](assets/branding/README.md)
