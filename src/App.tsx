@@ -53,7 +53,7 @@ export default function App() {
         <div className="header-controls">
           <span className="header-note">
             <ShieldCheck size={15} />
-            成人 BMI 参考 · 本地保存
+            成人 BMI 参考 · 数据仅保存在本地
           </span>
           <div className="unit-control" role="group" aria-label="体重单位">
             <span>体重单位</span>
@@ -129,7 +129,17 @@ export default function App() {
         </div>
       </main>
       <footer className="page-footer">
-        <span>StatureAtlas · 身高体重对照表</span>
+        <div className="footer-brand">
+          <span>StatureAtlas · 身高体重对照表</span>
+          <a
+            className="source-link"
+            href="https://github.com/01Petard"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub @01Petard
+          </a>
+        </div>
         <span>仅供成人参考，不能替代临床评估。</span>
       </footer>
     </div>

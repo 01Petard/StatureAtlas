@@ -471,6 +471,16 @@ input {
   font-size: 10px;
   color: #94a0b0;
 }
+.footer-brand {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 12px;
+}
+.footer-brand .source-link {
+  margin-top: 0;
+  font-size: inherit;
+}
 .icon-button {
   display: inline-flex;
   align-items: center;

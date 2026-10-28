@@ -45,7 +45,7 @@ export function RecordEditor({
   onCancel: () => void;
 }) {
   const [label, setLabel] = useState(record?.label ?? "");
-  const [gender, setGender] = useState<Gender>(record?.gender ?? "male");
+  const [gender, setGender] = useState<Gender>(record?.gender ?? "female");
   const [height, setHeight] = useState(record ? String(record.heightCm) : "");
   const [weightInput, setWeightInput] = useState({
     value: record ? String(displayWeight(record.weightKg, unit)) : "",
@@ -151,7 +151,7 @@ export function RecordEditor({
         <fieldset className="form-field">
           <legend>性别</legend>
           <div className="gender-options">
-            {(["male", "female"] as const).map((g) => (
+            {(["female", "male"] as const).map((g) => (
               <label key={g} className={gender === g ? `selected ${g}` : ""}>
                 <input
                   type="radio"

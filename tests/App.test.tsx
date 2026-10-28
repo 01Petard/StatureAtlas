@@ -24,6 +24,13 @@ test("初次访问无演示记录，完整 CRUD、分类、隐藏和刷新恢复
     screen.getByRole("link", { name: /StatureAtlas/ }),
   ).toBeInTheDocument();
   expect(screen.getByText("还没有记录")).toBeInTheDocument();
+  const genderOptions = screen.getAllByRole("radio", { name: /^(女|男)$/ });
+  expect(genderOptions.map((option) => option.getAttribute("value"))).toEqual([
+    "female",
+    "male",
+  ]);
+  expect(genderOptions[0]).toBeChecked();
+  expect(genderOptions[1]).not.toBeChecked();
   await addRecord(user, "我自己", "男", "178", "72");
   await addRecord(user, "朋友A", "女", "165", "50");
   await addRecord(user, "朋友B", "男", "182", "88");
@@ -51,6 +58,7 @@ test("初次访问无演示记录，完整 CRUD、分类、隐藏和刷新恢复
   ).toHaveLength(0);
   await user.click(screen.getByRole("button", { name: "显示全部标记" }));
   await user.click(screen.getByRole("button", { name: "编辑 朋友B" }));
+  expect(screen.getByRole("radio", { name: "男" })).toBeChecked();
   await user.clear(screen.getByRole("textbox", { name: "体重 kg" }));
   await user.type(screen.getByRole("textbox", { name: "体重 kg" }), "80");
   await user.click(screen.getByRole("button", { name: "保存修改" }));
@@ -145,12 +153,12 @@ test("公斤与斤全局换算、保留草稿、BMI 与存储不受单位影响"
   ).toBe(72.05);
   const list = screen.getByRole("region", { name: "我的记录 1" });
   expect(list).toHaveTextContent("72.05 kg22.7正常");
-  const before = within(screen.getByTestId("male-markers")).getByRole("button")
+  const before = within(screen.getByTestId("female-markers")).getByRole("button")
     .style.left;
   await user.click(screen.getByRole("button", { name: "斤" }));
   expect(list).toHaveTextContent("144.1 斤22.7正常");
   expect(
-    within(screen.getByTestId("male-markers")).getByRole("button").style.left,
+    within(screen.getByTestId("female-markers")).getByRole("button").style.left,
   ).toBe(before);
   await user.click(screen.getByRole("button", { name: "编辑 单位测试" }));
   expect(screen.getByRole("textbox", { name: "体重 斤" })).toHaveValue("144.1");
@@ -174,7 +182,7 @@ test("昵称留空或空格时自动生成友好名称，保留手填名称", as
     "小满",
   ]);
   expect(
-    within(screen.getByTestId("male-markers")).getByRole("button"),
+    within(screen.getByTestId("female-markers")).getByRole("button"),
   ).toHaveTextContent("2");
   await addRecord(user, "自定义昵称", "女", "165", "50");
   expect(
